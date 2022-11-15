@@ -4,6 +4,8 @@
 
 
 #include "vector.h"
+#include <iterator>
+#include <vector>
 
 int main() {
 
@@ -14,17 +16,29 @@ int main() {
     v1.push_back(3);
     v1.push_back(3);
     v1.push_back(3);
+    v1.push_back(3);
+    v1.push_back(3);
+    v1.push_back(3);
+    v1[3] = 200;
+    v1.pop_back();
+    v1.pop_back();
+    v1.pop_back();
 
-    std::cout << v1[0] << std::endl;
-    std::cout << v1[1] << std::endl;
-    std::cout << v1[2] << std::endl;
-    std::cout << v1[3] << std::endl;
-    std::cout << v1[4] << std::endl;
-    std::cout << v1[5] << std::endl;
-    std::cout << v1[6] << std::endl;
 
-    int x[10] = {0};
-    x[1] = 100;
+    for (auto x: v1) {
+        std::cout << x << std::endl;
+    }
+
+    Vector<double> v2;
+    v2.push_back(1.5l);
+    v2.push_back(1.5l);
+    v2.push_back(1.5l);
+    v2.push_back(1.5l);
+
+
+    for (auto x: v2) {
+        std::cout << x << std::endl;
+    }
 
     return 0;
 }

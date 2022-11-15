@@ -7,48 +7,51 @@
 
 #include <array>
 #include <iostream>
+#include <algorithm>
+#include <iterator>
 
 
-template<typename T>
-struct Data {
-    Data() = default;
-
-    explicit Data(T value) : _value(value) {};
-
-    Data &operator=(const T &v) {
-        _value = v;
-        return *this;
-    }
-
-
-    friend std::ostream &operator<<(std::ostream &os, Data<T> d) {
-        os << d._value;
-        return os;
-    }
-
-private:
-    T _value;
-};
+//template<typename T>
+//struct Data {
+//    Data() = default;
+//
+//    explicit Data(T value) : _value(value) {};
+//
+//    Data &operator=(const T &v) {
+//        _value = v;
+//        return *this;
+//    }
+//
+//
+//    friend std::ostream &operator<<(std::ostream &os, Data<T> d) {
+//        os << d._value;
+//        return os;
+//    }
+//
+//private:
+//    T _value;
+//};
 
 
 template<typename T>
 class Vector {
 public:
     typedef T value_type;
-    typedef Data<value_type> *pointer;
+    typedef value_type *pointer;
+    typedef size_t size_type;
 
     Vector() = default;
 
     ~Vector() {
-        delete[] data;
+        delete data;
     }
 
     void push_back(value_type v) {
         if (data == nullptr) {
-            data = new Data<value_type>[1];
+            data = new value_type[1];
             *data = v;
         } else {
-            auto tmp_d = new Data<T>[length + 1];
+            auto tmp_d = new value_type[length + 1];
             std::copy(data, data + length, tmp_d);
             tmp_d[length] = v;
             delete data;
@@ -57,12 +60,30 @@ public:
         length++;
     };
 
-    void pop_back() {};
 
+    void pop_back() {
+        if (length > 0) --length;
+    };
 
-    Data<value_type> operator[](int i) {
+    pointer begin() {
+        return data;
+    }
+
+    pointer end() {
+        return data + length;
+    }
+
+    value_type &operator[](size_type i) {
         return data[i];
     }
+
+    bool empty() { return length == 0; };
+
+    size_type size() { return length; };
+
+    bool operator==(Vector &v) {
+
+    };
 
 
 private:
