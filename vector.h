@@ -5,10 +5,7 @@
 #ifndef CPPDATASTRUCTURE_VECTOR_H
 #define CPPDATASTRUCTURE_VECTOR_H
 
-#include <array>
 #include <iostream>
-#include <algorithm>
-#include <iterator>
 
 
 //template<typename T>
@@ -43,26 +40,24 @@ public:
     Vector() = default;
 
     ~Vector() {
-        delete data;
+        delete[] data;
     }
 
     void push_back(value_type v) {
-        if (data == nullptr) {
-            data = new value_type[1];
-            *data = v;
-        } else {
-            auto tmp_d = new value_type[length + 1];
-            std::copy(data, data + length, tmp_d);
-            tmp_d[length] = v;
-            delete data;
-            data = tmp_d;
+        if (current == capacity) {
+            auto tmp = new value_type[capacity * 2];
+            std::copy(data, data + capacity, tmp);
+            delete[] data;
+            data = tmp;
+            capacity *= 2;
         }
-        length++;
+        data[current] = v;
+        ++current;
     };
 
 
     void pop_back() {
-        if (length > 0) --length;
+        current--;
     };
 
     pointer begin() {
@@ -70,16 +65,16 @@ public:
     }
 
     pointer end() {
-        return data + length;
+        return data + current;
     }
 
     value_type &operator[](size_type i) {
         return data[i];
     }
 
-    bool empty() { return length == 0; };
+    bool empty() { return current == 0; };
 
-    size_type size() { return length; };
+    size_type size() { return current; };
 
     bool operator==(Vector &v) {
 
@@ -87,8 +82,9 @@ public:
 
 
 private:
-    int length = 0;
-    pointer data = nullptr;
+    size_type current = 0;
+    pointer data = new value_type[1];
+    size_type capacity = 1;
 
 };
 

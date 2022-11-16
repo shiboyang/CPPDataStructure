@@ -4,8 +4,6 @@
 
 
 #include "vector.h"
-#include <iterator>
-#include <vector>
 
 int main() {
 
@@ -39,6 +37,15 @@ int main() {
     for (auto x: v2) {
         std::cout << x << std::endl;
     }
+
+
+    Vector<std::string> v3;
+    v3.push_back("123");
+    v3.push_back("abc");
+    v3.push_back("456");
+
+    std::cout << v3[1] << std::endl;
+
 
     return 0;
 }
