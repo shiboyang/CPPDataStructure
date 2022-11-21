@@ -77,7 +77,6 @@ public:
     size_type size() { return current; };
 
     bool operator==(Vector &v) {
-
     };
 
 
