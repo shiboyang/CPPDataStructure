@@ -9,5 +9,10 @@ project(CPPDataStructure VERSION 1.0)
 
 add_executable(Main main.cpp
         struct/vector.cpp
-        struct/queue.cpp)
+        struct/queue.cpp struct/dequeue.h
+        )
+
+add_executable(palcheck palindromeCheck.cpp
+        struct/dequeue.h
+        )
 
