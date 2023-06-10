@@ -41,7 +41,7 @@ public:
     }
 
     void push_back(T data) {
-        auto newNode = new struct QNode<T>(data);
+        auto newNode = new QNode<T>(data);
         if (empty()) {
             frontNode = rearNode = newNode;
         } else {
@@ -52,7 +52,7 @@ public:
     }
 
     void push_front(T data) {
-        auto newNode = new struct QNode<T>(data);
+        auto newNode = new QNode<T>(data);
         if (empty()) {
             frontNode = rearNode = newNode;
         } else {
