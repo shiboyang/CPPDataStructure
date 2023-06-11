@@ -16,3 +16,5 @@ add_executable(palcheck palindromeCheck.cpp
         struct/dequeue.h
         )
 
+add_executable(NumConversion projects/recursion/num_conversion.cpp)
+
