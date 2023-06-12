@@ -10,21 +10,21 @@
 // 3. 递归算法必须是调用自身的. 解决减小了规模的相同问题.
 
 
-std::ostringstream toStr(int n, int base) {
+void toStr(int n, int base, std::ostringstream &oss) {
     static char convertString[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E'};
 
     if (n < base) {
-        std::ostringstream osstream;
-        osstream << convertString[n];
-        return osstream;
+        oss << convertString[n];
     } else {
-        return toStr(n / base, base) << convertString[n % base];
+        toStr(n / base, base, oss);
+        oss << convertString[n % base];
     }
 }
 
 
 int main() {
-    std::ostringstream osstream = toStr(100, 2);
+    std::ostringstream osstream;
+    toStr(100, 2, osstream);
     std::cout << osstream.str() << std::endl;
 
     return 0;
