@@ -16,10 +16,13 @@ struct QNode {
 };
 
 
-// this dequeue is implemented by linked list
+// this dequeue is implemented by linked List
 template<typename T>
 class DeQueue {
 public:
+    typedef struct QNode<T> node_type;
+    typedef T value_type;
+
     DeQueue() : frontNode(nullptr), rearNode(nullptr), currentCount(0) {};
 
     bool empty() {
@@ -30,12 +33,12 @@ public:
         return currentCount;
     }
 
-    T front() {
+    value_type front() {
         if (empty()) exit(-1);
         return frontNode->data;
     }
 
-    T back() {
+    value_type back() {
         if (empty()) exit(-1);
         return rearNode->data;
     }
@@ -85,8 +88,8 @@ public:
 
 
 private:
-    struct QNode<T> *frontNode;
-    struct QNode<T> *rearNode;
+    node_type *frontNode;
+    node_type *rearNode;
     int currentCount = 0;
 };
 
