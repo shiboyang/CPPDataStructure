@@ -7,10 +7,6 @@ include_directories(struct)
 
 project(CPPDataStructure VERSION 1.0)
 
-add_executable(Main main.cpp
-        struct/vector.cpp
-        struct/dequeue.h
-        )
 
 add_executable(palcheck palindromeCheck.cpp
         struct/dequeue.h
@@ -18,4 +14,5 @@ add_executable(palcheck palindromeCheck.cpp
 
 add_executable(NumConversion projects/recursion/num_conversion.cpp)
 add_executable(testUnorderedList test/TestUnorderedList.cpp)
+add_executable(testQueue test/TestQueue.cpp struct/dequeue.h)
 
