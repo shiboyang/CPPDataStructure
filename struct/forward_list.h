@@ -7,24 +7,23 @@
 
 #include <cstdlib>
 
-template<typename T>
-struct Node {
-    struct Node *next;
-    T data;
-
-    explicit Node(T data_, struct Node<T> *node_ = nullptr) : data(data_), next(node_) {};
-};
-
 
 // singly linked list based forward_list.
 // head -> ... -> rear
 template<typename T>
 class ForwardList {
-
-    typedef Node<T> node_type;
+public:
     typedef T value_type;
 
 private:
+
+    struct node_type {
+        node_type *next;
+        value_type data;
+
+        explicit node_type(value_type data_, node_type *node_ = nullptr) : data(data_), next(node_) {};
+    };
+
     node_type *head;
 
 public:
@@ -83,7 +82,7 @@ public:
     }
 
     void push_front(value_type data) {
-        auto *nNode = new Node<value_type>(data, head);
+        auto *nNode = new node_type(data, head);
         head = nNode;
     }
 
