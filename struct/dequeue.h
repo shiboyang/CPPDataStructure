@@ -6,6 +6,7 @@
 #define CPPDATASTRUCTURE_DEQUEUE_H
 
 #include <cstdlib>
+#include <iostream>
 
 template<typename T>
 struct QNode {
@@ -16,21 +17,30 @@ struct QNode {
 };
 
 
-// this dequeue is implemented by linked List
+// this dequeue is implemented by linked ForwardList
 template<typename T>
 class DeQueue {
 public:
     typedef struct QNode<T> node_type;
     typedef T value_type;
 
-    DeQueue() : frontNode(nullptr), rearNode(nullptr), currentCount(0) {};
+    DeQueue() : frontNode(nullptr), rearNode(nullptr), count(0) {};
+
+    ~DeQueue() {
+        for (int i = 0; i < count; ++i) {
+            node_type *nextNode = frontNode->next;
+            delete frontNode;
+            frontNode = nextNode;
+        }
+        std::cout << "delete dequeue" << std::endl;
+    }
 
     bool empty() {
-        return currentCount == 0;
+        return count == 0;
     }
 
     int size() {
-        return currentCount;
+        return count;
     }
 
     value_type front() {
@@ -51,7 +61,7 @@ public:
             rearNode->next = newNode;
             rearNode = newNode;
         }
-        currentCount++;
+        count++;
     }
 
     void push_front(T data) {
@@ -62,7 +72,7 @@ public:
             newNode->next = frontNode;
             frontNode = newNode;
         }
-        currentCount++;
+        count++;
     }
 
     void pop_back() {
@@ -74,7 +84,7 @@ public:
 
         delete rearNode;
         rearNode = currentNode;
-        currentCount--;
+        count--;
 
     }
 
@@ -83,14 +93,14 @@ public:
         auto node = rearNode;
         rearNode = rearNode->next;
         delete node;
-        currentCount--;
+        count--;
     }
 
 
 private:
     node_type *frontNode;
     node_type *rearNode;
-    int currentCount = 0;
+    int count = 0;
 };
 
 #endif //CPPDATASTRUCTURE_DEQUEUE_H
