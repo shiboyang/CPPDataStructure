@@ -34,5 +34,13 @@ int main() {
     std::cout << "the first element is " << list.front() << std::endl;
     std::cout << "the last element is " << list.back() << std::endl;
 
+
+    auto it = list.begin();
+    ++it;
+    list.insert(it, 100);
+    for (auto l: list) {
+        std::cout << l << std::endl;
+    }
+
     return 0;
 }

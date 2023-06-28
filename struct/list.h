@@ -17,7 +17,8 @@ public:
 
     class iterator;
 
-    class const_interator;
+    class const_iterator; /* const_iterator != const iterator */
+
 
 private:
     struct node_type {
@@ -25,9 +26,11 @@ private:
         node_type *previous;
         node_type *next;
 
-        node_type(value_type data_, node_type *previous_, node_type *next_ = nullptr) : data(data_),
-                                                                                        previous(previous_),
-                                                                                        next(next_) {};
+        node_type(const value_type data_,
+                  node_type *previous_,
+                  node_type *next_ = nullptr) : data(data_),
+                                                previous(previous_),
+                                                next(next_) {};
     };
 
     node_type *head = nullptr;
@@ -53,7 +56,9 @@ public:
 
     void clear();
 
-    iterator insert(const_interator pos, value_type value);
+//    iterator insert(const_iterator &pos, value_type value);
+
+    iterator insert(iterator &pos, value_type value);
 
     void push_back(const_reference value);
 
@@ -65,7 +70,15 @@ public:
 
     iterator begin();
 
+    const_iterator begin() const;
+
+    const_iterator cbegin() const;
+
     iterator end();
+
+    const_iterator end() const;
+
+    const_iterator cend() const;
 
 
 };
@@ -101,10 +114,10 @@ template<typename T>
 void List<T>::clear() {
     while (!empty()) {
         node_type *nextNode = head->next;
-        head->next = nextNode->next;
-        free(nextNode);
-        count = 0;
+        delete head;
+        head = nextNode;
     }
+    count = 0;
 };
 
 template<typename T>
@@ -123,10 +136,15 @@ void List<T>::push_back(const_reference value) {
 template<typename T>
 void List<T>::pop_back() {
     if (!empty()) {
-        auto previousNode = rear->previous;
-        free(rear);
-        rear = previousNode;
-        rear->next = nullptr;
+        if (head == rear) {
+            delete head;
+            head = rear = nullptr;
+        } else {
+            auto latest = rear;
+            rear = rear->previous;
+            delete latest;
+            rear->next = nullptr;
+        }
     }
     --count;
 };
@@ -137,6 +155,7 @@ void List<T>::push_front(const_reference value) {
     if (empty()) {
         head = rear = newNode;
     } else {
+        head->previous = newNode;
         head = newNode;
     }
     ++count;
@@ -145,10 +164,15 @@ void List<T>::push_front(const_reference value) {
 template<typename T>
 void List<T>::pop_front() {
     if (!empty()) {
-        auto nextNode = head->next;
-        free(head);
-        head = nextNode;
-        head->previous = nullptr;
+        if (head == rear) {
+            delete head;
+            head = rear = nullptr;
+        } else {
+            auto first = head;
+            head = head->next;
+            delete first;
+            head->previous = nullptr;
+        }
     }
     --count;
 }
@@ -181,22 +205,115 @@ template<typename T>
 class List<T>::iterator {
 private:
     node_type *ptr;
-public:
-    explicit iterator(node_type *ptr_) : ptr(ptr_) {};
 
+    explicit iterator(node_type *ptr_) : ptr(ptr_) {};
+public:
     iterator &operator++() {
         ptr = ptr->next;
         return *this;
     }
 
-    bool operator!=(iterator &other) {
+    bool operator!=(const iterator &other) {
         return ptr != other.ptr;
+    }
+
+    bool operator==(const iterator &other) {
+        return ptr == other.ptr;
     }
 
     reference operator*() const {
         return ptr->data;
     }
 
+    friend List<T>;
 };
+
+template<typename T>
+class List<T>::const_iterator {
+private:
+    // const_iterator the const qualified field is ptr.
+    node_type const *ptr;
+
+    explicit const_iterator(node_type const *ptr_) : ptr(ptr_) {};
+public:
+
+    const_iterator operator++() {
+        ptr = ptr->next;
+        return *this;
+    };
+
+    bool operator!=(const const_iterator &other) {
+        return ptr != other.ptr;
+    }
+
+    bool operator==(const const_iterator &other) {
+        return ptr == other.ptr;
+    }
+
+    const_reference operator*() {
+        return ptr->data;
+    }
+
+    friend List<T>;
+};
+
+//template<typename T>
+//auto List<T>::insert(List::const_iterator &pos, value_type value) -> iterator {
+//    auto currentNode = pos.ptr;
+//    if (currentNode == nullptr) {
+//        // Iterator(end)
+//        push_back(value);
+//        return iterator(rear);
+//    } else if (pos == cbegin()) {
+//        push_front(value);
+//        return iterator(head);
+//    } else {
+//        auto newNode = new node_type(value, currentNode->previous, currentNode);
+//        newNode->previous->next = newNode;
+//        newNode->next->previous = newNode;
+//        ++count;
+//        return iterator(newNode);
+//    }
+//}
+
+template<typename T>
+typename List<T>::const_iterator List<T>::begin() const {
+    return const_iterator(head);
+}
+
+template<typename T>
+typename List<T>::const_iterator List<T>::end() const {
+    return const_iterator(nullptr);
+}
+
+template<typename T>
+typename List<T>::const_iterator List<T>::cbegin() const {
+    return const_iterator(head);
+}
+
+template<typename T>
+typename List<T>::const_iterator List<T>::cend() const {
+    return const_iterator(nullptr);
+}
+
+template<typename T>
+typename List<T>::iterator List<T>::insert(List::iterator &pos, value_type value) {
+    auto currentNode = pos.ptr;
+    if (currentNode == nullptr) {
+        // Iterator(end)
+        push_back(value);
+        return iterator(head);
+    } else if (pos == begin()) {
+        push_front(value);
+        return iterator(rear);
+    } else {
+        auto newNode = new node_type(value, currentNode->previous, currentNode);
+        newNode->previous->next = newNode;
+        newNode->next->previous = newNode;
+        ++count;
+        return iterator(newNode);
+    }
+}
+
 
 #endif //CPPDATASTRUCTURE_LIST_H
