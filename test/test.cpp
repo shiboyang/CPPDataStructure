@@ -4,13 +4,22 @@
 #include <list>
 #include <iostream>
 
+int func(int a, int b) {
+    return a + b;
+}
 
 int main() {
 
-    std::list<float> list;
-    auto x = list.front();
-    std::cout << x << std::endl;
-    std::cout << list.back() << std::endl;
+
+    func(10, 20);
+    const int x = 100;
+    const int y = 200;
+    func(x, y);
+
+    int a[0];
+    a[0] = 100;
+
+    std::cout << a[0] << std::endl;
 
     return 0;
 }

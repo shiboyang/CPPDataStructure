@@ -13,6 +13,7 @@ add_executable(palcheck palindromeCheck.cpp
         )
 
 add_executable(NumConversion projects/recursion/num_conversion.cpp)
+add_executable(hanoi projects/recursion/hanoi.cpp)
 add_executable(testForwardList test/TestUnorderedList.cpp)
 add_executable(testQueue test/TestQueue.cpp struct/dequeue.h)
 add_executable(test test/test.cpp)
