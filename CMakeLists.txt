@@ -15,6 +15,7 @@ add_executable(palcheck palindromeCheck.cpp
 add_executable(NumConversion projects/recursion/num_conversion.cpp)
 add_executable(hanoi projects/recursion/hanoi.cpp)
 add_executable(binarySearch projects/binarySearch.cpp)
+add_executable(bubbleSort projects/bubbleSort.cpp)
 
 
 add_executable(testForwardList test/TestUnorderedList.cpp)
