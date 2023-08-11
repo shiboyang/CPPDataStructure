@@ -17,7 +17,7 @@
  * 由于插入排序仅包含一次赋值操作，所以相对于未优化版本的bubbleSort性能要好一点。
  * @param vec
  */
-void insertSort(std::vector<int> &vec) {
+void insertionSort(std::vector<int> &vec) {
     for (int i = 0; i < vec.size(); ++i) {
         int value = vec[i];
         int index = i;
@@ -34,7 +34,7 @@ int main() {
     //-346 -12 -1 1 4 5 6 7 45 58 78 112 344 2342
     std::vector<int> vec{1, 4, 5, 7, 2342, 6, 78, 344, 58, 112, -1, 45, -12, -346};
 
-    insertSort(vec);
+    insertionSort(vec);
     std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>(std::cout, " "));
 
 
