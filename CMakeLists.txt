@@ -17,6 +17,7 @@ add_executable(hanoi projects/recursion/hanoi.cpp)
 add_executable(binarySearch projects/binarySearch.cpp)
 add_executable(bubbleSort projects/bubbleSort.cpp)
 add_executable(insertSort projects/insertSort.cpp)
+add_executable(shellSort projects/shellSort.cpp)
 
 
 add_executable(testForwardList test/TestUnorderedList.cpp)
