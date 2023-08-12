@@ -18,6 +18,7 @@ add_executable(binarySearch projects/binarySearch.cpp)
 add_executable(bubbleSort projects/bubbleSort.cpp)
 add_executable(insertSort projects/insertionSort.cpp)
 add_executable(shellSort projects/shellSort.cpp)
+add_executable(meregeSort projects/mergeSort.cpp)
 
 
 add_executable(testForwardList test/TestUnorderedList.cpp)
