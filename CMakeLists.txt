@@ -14,13 +14,15 @@ add_executable(palcheck palindromeCheck.cpp
 
 add_executable(NumConversion projects/recursion/num_conversion.cpp)
 add_executable(hanoi projects/recursion/hanoi.cpp)
-add_executable(binarySearch projects/binarySearch.cpp)
-add_executable(bubbleSort projects/bubbleSort.cpp)
-add_executable(insertSort projects/insertionSort.cpp)
-add_executable(shellSort projects/shellSort.cpp)
-add_executable(mergeSort projects/mergeSort.cpp)
-add_executable(quickSort projects/quickSort.cpp)
+add_executable(binarySearch projects/search/binarySearch.cpp)
+add_executable(bubbleSort projects/sort/bubbleSort.cpp)
+add_executable(insertSort projects/sort/insertionSort.cpp)
+add_executable(shellSort projects/sort/shellSort.cpp)
+add_executable(mergeSort projects/sort/mergeSort.cpp)
+add_executable(quickSort projects/sort/quickSort.cpp)
 
+
+add_executable(parseTree projects/buildParseTree.cpp)
 
 add_executable(testForwardList test/TestUnorderedList.cpp)
 add_executable(testQueue test/TestQueue.cpp struct/dequeue.h)
