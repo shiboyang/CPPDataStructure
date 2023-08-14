@@ -21,8 +21,8 @@ int partition(std::vector<int> &vec, int start, int end);
  *
  * partition实现：
  * 1. 假定选取第一个值作为中间值，leftMask = start rightMask = end;
- * 2. leftMask循环往右移动，满足 >= pivotValue and leftMask <= rightMask 停止循环
- * 3. rightMask循环往左移动，满足 <=pivotValue and leftMask <= rightMask 停止循环
+ * 2. leftMask循环往右移动，loop condition: >= pivotValue and leftMask <= rightMask
+ * 3. rightMask循环往左移动，loop condition: <=pivotValue and leftMask <= rightMask
  * 4. 判断如果leftMask <= rightMask，交换leftMask和rightMask指向的值。如果leftMask > rightMask说明已经找到了应该放置pivotValue
  * 值的地方，或者说数据已经被排布成两部分，一部分全部都小于pivotValue，一部分全部都大于pivotValue
  * 5. 此时rightMask所指向的位置就是pivotValue应该放置的位置。放置中间值，返回rightMask。
