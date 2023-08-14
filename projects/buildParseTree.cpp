@@ -40,23 +40,20 @@ void buildParseTree(const std::string &parseString, BinaryTree &tree) {
     std::cout << "end" << std::endl;
 }
 
-int opers(char a, char b, char op) {
-    int x = int(a) - 48;
-    int y = int(b) - 48;
 
+int opers(int a, int b, char op) {
     switch (op) {
         case '+':
-            return x + y;
+            return a + b;
         case '-':
-            return x - y;
+            return a - b;
         case '*':
-            return x * y;
+            return a * b;
         case '/':
-            return x / y;
+            return a / b;
         default:
             throw std::runtime_error("Unsupport operate");
     }
-
 }
 
 int evaluate(BinaryTree *pTree) {
@@ -65,13 +62,13 @@ int evaluate(BinaryTree *pTree) {
     if (leftChild != nullptr and rightChild != nullptr) {
         return opers(evaluate(leftChild), evaluate(rightChild), pTree->getRootValue());
     } else {
-        return pTree->getRootValue();
+        return int(pTree->getRootValue()) - 48;
     }
 }
 
 
 int main() {
-    std::string text = "(3+(5*2))";
+    std::string text = "(3+(5*4))";
     BinaryTree tree;
     buildParseTree(text, tree);
     int result = evaluate(&tree);
