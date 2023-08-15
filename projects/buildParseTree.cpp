@@ -2,7 +2,7 @@
 // Created by sparkai on 23-8-14.
 //
 
-#include "binaryTree.h"
+#include "binary_tree.h"
 #include <sstream>
 #include <iostream>
 #include <stack>
@@ -36,8 +36,6 @@ void buildParseTree(const std::string &parseString, BinaryTree &tree) {
             tStack.pop();
         }
     }
-
-    std::cout << "end" << std::endl;
 }
 
 
@@ -68,11 +66,13 @@ int evaluate(BinaryTree *pTree) {
 
 
 int main() {
-    std::string text = "(3+(5*4))";
+    std::string text = "(3+(4*5))";
     BinaryTree tree;
     buildParseTree(text, tree);
     int result = evaluate(&tree);
     std::cout << result << std::endl;
+
+    tree.inorder();
 
 
     return 0;

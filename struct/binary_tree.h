@@ -2,8 +2,10 @@
 // Created by sparkai on 23-8-14.
 //
 
-#ifndef CPPDATASTRUCTURE_BINARYTREE_H
-#define CPPDATASTRUCTURE_BINARYTREE_H
+#ifndef CPPDATASTRUCTURE_BINARY_TREE_H
+#define CPPDATASTRUCTURE_BINARY_TREE_H
+
+#include <iostream>
 
 class BinaryTree {
     char data;
@@ -50,11 +52,28 @@ public:
         data = c;
     }
 
-    char getRootValue() {
+    char getRootValue() const {
         return data;
     }
 
+    void preorder() const {
+        std::cout << data << std::endl;
+        if (leftNode != nullptr) leftNode->preorder();
+        if (rightNode != nullptr) rightNode->preorder();
+    }
+
+    void inorder() const {
+        if (leftNode != nullptr) leftNode->inorder();
+        std::cout << data << std::endl;
+        if (rightNode != nullptr) rightNode->inorder();
+    }
+
+    void postorder() const {
+        if (leftNode != nullptr) leftNode->postorder();
+        if (rightNode != nullptr) rightNode->postorder();
+        std::cout << data << std::endl;
+    }
 
 };
 
-#endif //CPPDATASTRUCTURE_BINARYTREE_H
+#endif //CPPDATASTRUCTURE_BINARY_TREE_H
