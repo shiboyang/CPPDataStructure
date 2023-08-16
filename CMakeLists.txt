@@ -30,4 +30,4 @@ add_executable(test test/test.cpp)
 add_executable(testList test/TestList.cpp)
 add_executable(testTraversalBinaryTree test/testTraversalBinaryTree.cpp)
 add_executable(testBinaryHeap test/testBinaryHeap.cpp)
-
+add_executable(testBinarySearchTree test/testBinarySearchTree.cpp)
