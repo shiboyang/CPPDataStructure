@@ -29,6 +29,16 @@ void test_binary_heap() {
     std::cout << "the minimum is " << binHeap2.delMin() << std::endl;
     binHeap2.print_heap();
     std::cout << "\n";
+
+    // Use binary heap to sort list.
+    std::vector<int> result;
+    while (!binHeap.isEmpty()) {
+        int tmp = binHeap.delMin();
+        result.push_back(tmp);
+    }
+    std::cout << "the sorted list is :";
+    std::copy(result.begin(), result.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << "\n";
 }
 
 int main() {

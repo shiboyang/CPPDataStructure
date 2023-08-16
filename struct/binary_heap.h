@@ -28,6 +28,7 @@ public:
     int delMin() {
         int retVal = vec[1];
         vec[1] = vec.back();
+        vec.pop_back();
         percDown(1);
         return retVal;
     }
