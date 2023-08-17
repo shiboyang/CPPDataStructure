@@ -56,7 +56,7 @@ public:
 
     void clear();
 
-//    iterator insert(const_iterator &pos, value_type value);
+//    iterator put(const_iterator &pos, value_type value);
 
     iterator insert(iterator &pos, value_type value);
 
@@ -258,7 +258,7 @@ public:
 };
 
 //template<typename T>
-//auto List<T>::insert(List::const_iterator &pos, value_type value) -> iterator {
+//auto List<T>::put(List::const_iterator &pos, value_type value) -> iterator {
 //    auto currentNode = pos.ptr;
 //    if (currentNode == nullptr) {
 //        // Iterator(end)

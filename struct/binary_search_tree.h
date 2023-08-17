@@ -12,6 +12,7 @@ class Node {
 public:
     int key;
     int payload;
+    int balanceFactor;
     Node *leftNode;
     Node *rightNode;
     Node *parent;
@@ -78,6 +79,7 @@ public:
 };
 
 class BinarySearchTree {
+protected:
     Node *root;
     int count = 0;
 public:
@@ -99,16 +101,16 @@ public:
     }
 
 
-    /**
-     * insert key and payload
+    virtual /**
+     * put key and payload
      * @param key
      * @param val
      */
-    void insert(int key, int val) {
+    void put(int key, int val) {
         if (root == nullptr) {
             root = new Node(key, val);
         } else {
-            _insert(key, val, root);
+            _put(key, val, root);
         }
         count++;
     }
@@ -248,16 +250,16 @@ private:
         if (currentNode->hasRightChild()) _inorder(currentNode->rightNode);
     }
 
-    void _insert(int key, int val, Node *currentNode) {
+    void _put(int key, int val, Node *currentNode) {
         if (key < currentNode->key) {
             if (currentNode->hasLeftChild()) {
-                _insert(key, val, currentNode->leftNode);
+                _put(key, val, currentNode->leftNode);
             } else {
                 currentNode->leftNode = new Node(key, val, currentNode);
             }
         } else {
             if (currentNode->hasRightChild()) {
-                _insert(key, val, currentNode->rightNode);
+                _put(key, val, currentNode->rightNode);
             } else {
                 currentNode->rightNode = new Node(key, val, currentNode);
             }

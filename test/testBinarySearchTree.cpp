@@ -19,7 +19,7 @@ void test_binary_search_tree() {
     std::vector<int> vec{70, 31, 93, 94, 14, 23, 73};
     BinarySearchTree bst;
     for (auto x: vec) {
-        bst.insert(x, x);
+        bst.put(x, x);
     }
 
     bst.inorder();

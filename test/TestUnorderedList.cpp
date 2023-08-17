@@ -33,7 +33,7 @@ int main() {
     list.insert_after(list.begin(), 10);
     list.insert_after(list.begin(), 101);
 
-    std::cout << "insert 3 times" << std::endl;
+    std::cout << "put 3 times" << std::endl;
     for (auto x: list) {
         std::cout << x << std::endl;
     }

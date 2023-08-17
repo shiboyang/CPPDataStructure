@@ -26,11 +26,15 @@ add_executable(quickSort projects/sort/quickSort.cpp)
 add_executable(parseTree projects/buildParseTree.cpp)
 
 add_executable(testForwardList test/TestUnorderedList.cpp)
-add_executable(testQueue test/TestQueue.cpp struct/dequeue.h)
+add_executable(testQueue test/TestQueue.cpp)
 add_executable(test test/test.cpp)
 add_executable(testList test/TestList.cpp)
 add_executable(testTraversalBinaryTree test/testTraversalBinaryTree.cpp)
 add_executable(testBinaryHeap test/testBinaryHeap.cpp)
 add_executable(testBinarySearchTree test/testBinarySearchTree.cpp
+        third-part/visualizer.cpp
+        )
+
+add_executable(testAVLTree test/testAVLTree.cpp
         third-part/visualizer.cpp
         )
