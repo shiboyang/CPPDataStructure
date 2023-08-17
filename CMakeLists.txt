@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
 include_directories(struct)
+include_directories(third-part)
 
 project(CPPDataStructure VERSION 1.0)
 
@@ -30,4 +31,6 @@ add_executable(test test/test.cpp)
 add_executable(testList test/TestList.cpp)
 add_executable(testTraversalBinaryTree test/testTraversalBinaryTree.cpp)
 add_executable(testBinaryHeap test/testBinaryHeap.cpp)
-add_executable(testBinarySearchTree test/testBinarySearchTree.cpp)
+add_executable(testBinarySearchTree test/testBinarySearchTree.cpp
+        third-part/visualizer.cpp
+        )

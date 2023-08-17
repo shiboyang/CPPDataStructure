@@ -33,11 +33,11 @@ public:
         return rightNode != nullptr;
     }
 
-    bool isLeftChild() {
+    bool isLeftChild() const {
         return parent and parent->leftNode == this;
     }
 
-    bool isRightChild() {
+    bool isRightChild() const {
         return parent and parent->rightNode == this;
     }
 
@@ -47,6 +47,31 @@ public:
 
     bool isRoot() const {
         return parent == nullptr;
+    }
+
+    /**
+     * Used for a root node with two children condition
+     * @return
+     */
+    Node *findSuccessor() const {
+        auto successor = rightNode;
+        while (successor->hasLeftChild()) {
+            successor = successor->leftNode;
+        }
+        return successor;
+    }
+
+    void spliceOut() const {
+        if (isLeaf()) {
+            if (isLeftChild()) {
+                parent->leftNode = nullptr;
+            } else {
+                parent->rightNode = nullptr;
+            }
+        } else {
+            rightNode->parent = parent;
+            parent->leftNode = rightNode;
+        }
     }
 
 
@@ -64,8 +89,14 @@ public:
     }
 
     ~BinarySearchTree() {
-        delete root;
+        // todo bug double-free
+//        delete root;
     };
+
+    // Inorder to support the visualization program.
+    Node *get_root() {
+        return root;
+    }
 
 
     /**
@@ -110,7 +141,7 @@ public:
         if (count > 1) {
             auto res = _get(key, root);
             if (res != nullptr) {
-                _remove(key, res);
+                _remove(res);
                 delete res;
                 count--;
             } else {
@@ -135,7 +166,7 @@ private:
      * @param key
      * @param currentNode
      */
-    void _remove(int key, Node *currentNode) {
+    void _remove(Node *currentNode) {
         if (currentNode->isLeaf()) {
             // the deleted node do not have child.
             if (currentNode->isLeftChild()) {
@@ -146,8 +177,23 @@ private:
             //delete currentNode;
 
         } else if (currentNode->hasLeftChild() and currentNode->hasRightChild()) {
-            // the deleted node has two child.
-
+            /**
+             * If the deleted node has two children.
+             * 1. You need to find successor
+             *    - let the current node's right child node as root node
+             *    - and then find the minimum key in the left child node of the root node.
+             * 2. Splice the successor children to it's parents.
+             * 3. Replace the deleted node.
+             */
+            auto succ = currentNode->findSuccessor();
+            succ->spliceOut();
+            succ->parent = currentNode->parent;
+            succ->leftNode = currentNode->leftNode;
+            succ->rightNode = currentNode->rightNode;
+            if (currentNode->isLeftChild())
+                currentNode->parent->leftNode = succ;
+            else
+                currentNode->parent->rightNode = succ;
 
 
         } else {

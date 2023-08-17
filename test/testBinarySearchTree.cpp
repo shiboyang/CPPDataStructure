@@ -3,6 +3,7 @@
 //
 
 #include "binary_search_tree.h"
+#include "visualizer.h"
 #include <vector>
 
 void test_get(int key, BinarySearchTree &bst) {
@@ -15,7 +16,7 @@ void test_get(int key, BinarySearchTree &bst) {
 }
 
 void test_binary_search_tree() {
-    std::vector<int> vec{14, 31, 93, 94, 70, 23, 73};
+    std::vector<int> vec{70, 31, 93, 94, 14, 23, 73};
     BinarySearchTree bst;
     for (auto x: vec) {
         bst.insert(x, x);
@@ -25,6 +26,16 @@ void test_binary_search_tree() {
 
     test_get(31, bst);
     test_get(32, bst);
+
+    visualizer vis(bst);
+    vis.visualize();
+
+    int key = 23;
+    std::cout << "delete the item key " << key << std::endl;
+    bst.remove(key);
+
+    visualizer vis2(bst);
+    vis2.visualize();
 }
 
 
