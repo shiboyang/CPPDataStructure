@@ -8,11 +8,13 @@ void test_avl_tree() {
     AVLTree avlTree;
 
 
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 15; ++i) {
         avlTree.put(i, i);
     }
     visualizer vis(avlTree);
     vis.visualize();
+
+    avlTree.inorder();
 }
 
 int main() {

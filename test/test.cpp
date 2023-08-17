@@ -3,23 +3,25 @@
 //
 #include <list>
 #include <iostream>
-
-int func(int a, int b) {
-    return a + b;
-}
+#include <sstream>
 
 int main() {
 
 
-    func(10, 20);
-    const int x = 100;
-    const int y = 200;
-    func(x, y);
+    std::string str = "abc1234.2xxxx";
+    std::istringstream iss(str);
+    std::cout << iss.good() << std::endl;
 
-    int a[0];
-    a[0] = 100;
+//    int x;
+//    iss >> x;
+//    std::string ss;
+//    iss >> ss;
+//    std::cout << ss << std::endl;
+    char c;
+    iss >> c;
 
-    std::cout << a[0] << std::endl;
+    std::cout << iss.good() << " : " << c << std::endl;
+
 
     return 0;
 }

@@ -32,7 +32,8 @@ visualizer::visualizer(BinarySearchTree &tree, int node_length /* = -1 */, int s
         for (auto node = 0; node < get_nodes_count(level); node++) {
             // Convert node to string and add it to values vector
             // also add empty string if node is empty
-            auto value = nodes.front() == nullptr ? "" : to_string(nodes.front()->key);
+            auto value = nodes.front() == nullptr ? "" : to_string(nodes.front()->key).append("[").append(
+                    to_string(nodes.front()->balanceFactor)).append("]");
             values_[level][node] = value;
             nodes.pop();
 

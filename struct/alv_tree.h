@@ -40,10 +40,11 @@ public:
             }
         }
         newNode->leftNode = rotateNode;
+        newNode->parent = rotateNode->parent;
         rotateNode->parent = newNode;
 
-        newNode->balanceFactor = rotateNode->balanceFactor + 1 - min(0, newNode->balanceFactor);
-        rotateNode->balanceFactor = newNode->balanceFactor + 1 - max(rotateNode->balanceFactor, 0);
+        rotateNode->balanceFactor = rotateNode->balanceFactor + 1 - min(0, newNode->balanceFactor);
+        newNode->balanceFactor = newNode->balanceFactor + 1 - max(rotateNode->balanceFactor, 0);
     }
 
     void rotateRight(Node *rotateNode) {
@@ -61,6 +62,7 @@ public:
                 rotateNode->parent->leftNode = newNode;
         }
         newNode->rightNode = rotateNode;
+        newNode->parent = rotateNode->parent;
         rotateNode->parent = newNode;
 
         rotateNode->balanceFactor = rotateNode->balanceFactor - 1 - min(newNode->balanceFactor, 0);
