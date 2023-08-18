@@ -10,7 +10,7 @@ project(CPPDataStructure VERSION 1.0)
 
 
 add_executable(palcheck palindromeCheck.cpp
-        struct/dequeue.h
+        struct/deque.h
         )
 
 add_executable(NumConversion projects/recursion/num_conversion.cpp)

@@ -2,8 +2,8 @@
 // Created by shiby on 23-6-8.
 //
 
-#ifndef CPPDATASTRUCTURE_DEQUEUE_H
-#define CPPDATASTRUCTURE_DEQUEUE_H
+#ifndef CPPDATASTRUCTURE_DEQUE_H
+#define CPPDATASTRUCTURE_DEQUE_H
 
 #include <cstdlib>
 #include <iostream>
@@ -17,7 +17,7 @@ struct QNode {
 };
 
 
-// this dequeue is implemented by linked ForwardList
+// this dequeue is based on a linked ForwardList
 template<typename T>
 class DeQueue {
 public:
@@ -103,4 +103,4 @@ private:
     int count = 0;
 };
 
-#endif //CPPDATASTRUCTURE_DEQUEUE_H
+#endif //CPPDATASTRUCTURE_DEQUE_H

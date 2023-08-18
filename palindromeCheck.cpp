@@ -1,7 +1,7 @@
 //
 // Created by shiby on 23-6-9.
 //
-#include "struct/dequeue.h"
+#include "struct/deque.h"
 #include <iostream>
 
 
