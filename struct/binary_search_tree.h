@@ -67,6 +67,7 @@ public:
             if (isLeftChild()) {
                 parent->leftNode = nullptr;
             } else {
+                // this line will never be executed. because there is no such case.
                 parent->rightNode = nullptr;
             }
         } else {

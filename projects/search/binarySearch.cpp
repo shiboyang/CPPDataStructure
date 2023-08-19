@@ -17,6 +17,7 @@ void initVector(int size, std::vector<int> &vec, bool isOrdered = true) {
 }
 
 
+//loop version
 int binarySearch(std::vector<int> &orderedVec, int item) {
 
     int start = 0;
@@ -38,7 +39,7 @@ int binarySearch(std::vector<int> &orderedVec, int item) {
     return pos;
 }
 
-
+// recursive version
 int binarySearch(std::vector<int> &vec, int start, int end, int item) {
 
     int midPos = (start + end) / 2;

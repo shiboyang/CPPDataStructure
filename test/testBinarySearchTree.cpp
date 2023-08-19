@@ -40,7 +40,17 @@ void test_binary_search_tree() {
 
 
 int main() {
-    test_binary_search_tree();
+//    test_binary_search_tree();
+
+    BinarySearchTree bst;
+    bst.put(5, 6);
+    bst.put(3, 5);
+    bst.put(6, 7);
+    bst.put(2, 2);
+    bst.put(4, 4);
+    bst.put(1, 3);
+    visualizer vis(bst);
+    vis.visualize();
 
     return 0;
 }
